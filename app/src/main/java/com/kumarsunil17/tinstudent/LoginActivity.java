@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void doLogin(View view) {
-        
+
     }
 
     public void doResetPassword(View view) {
