@@ -14,25 +14,23 @@ import com.kumarsunil17.tinstudent.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Help_Fragment extends Fragment {
-
+public class Syllabus_Fragment extends Fragment {
     private View v;
     private AppCompatActivity a;
 
-    public Help_Fragment() {
+    public Syllabus_Fragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_help_, container, false);
+        v = inflater.inflate(R.layout.fragment_syllabus_, container, false);
         a = (AppCompatActivity) getActivity();
-        a.getSupportActionBar().setTitle("Help");
+        a.getSupportActionBar().setTitle("Syllabus");
         NavigationView nav = a.findViewById(R.id.nav_view);
-        nav.setCheckedItem(R.id.nav_help);
+        nav.setCheckedItem(R.id.nav_syllabus);
         return v;
     }
 
