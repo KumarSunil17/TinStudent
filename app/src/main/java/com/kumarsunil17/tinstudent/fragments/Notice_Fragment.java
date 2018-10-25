@@ -32,5 +32,4 @@ public class Notice_Fragment extends Fragment {
         nav.setCheckedItem(R.id.nav_profile);
         return v;
     }
-
 }
