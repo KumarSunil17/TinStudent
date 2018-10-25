@@ -11,16 +11,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.kumarsunil17.tinstudent.fragments.About_Frgament;
 import com.kumarsunil17.tinstudent.fragments.Attendance_Fragment;
 import com.kumarsunil17.tinstudent.fragments.Help_Fragment;
 import com.kumarsunil17.tinstudent.fragments.Home_Fragment;
+import com.kumarsunil17.tinstudent.fragments.Notice_Fragment;
 import com.kumarsunil17.tinstudent.fragments.Profile_Fragment;
 import com.kumarsunil17.tinstudent.fragments.Syllabus_Fragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private FirebaseAuth mAuth;
     private Fragment f = null;
     String tag = "others";
 
@@ -40,11 +44,14 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        mAuth = FirebaseAuth.getInstance();
         f = new Home_Fragment();
         tag = "home";
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.container,f,tag);
         ft.commit();
+        Toast.makeText(this,(mAuth.getCurrentUser()!=null)? mAuth.getCurrentUser().getDisplayName():"no", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -114,7 +121,14 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.container,f,tag);
             ft.commit();
 
-        } else if (id == R.id.nav_attendance) {
+        }else if (id == R.id.nav_notice){
+            f = new Notice_Fragment();
+            tag = "others";
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.container,f,tag);
+            ft.commit();
+        }
+        else if (id == R.id.nav_attendance) {
             f = new Attendance_Fragment();
             tag = "others";
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
