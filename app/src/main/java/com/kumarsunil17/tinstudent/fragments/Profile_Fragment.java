@@ -1,6 +1,5 @@
 package com.kumarsunil17.tinstudent.fragments;
 
-
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -22,7 +21,6 @@ public class Profile_Fragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,5 +32,4 @@ public class Profile_Fragment extends Fragment {
         nav.setCheckedItem(R.id.nav_profile);
         return v;
     }
-
 }
