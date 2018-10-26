@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,13 +37,14 @@ public class Notice_Fragment extends Fragment {
     private DatabaseReference noticeRef,notificationRef,studentRef;
     private FirebaseRecyclerAdapter<NotificationData,NotificationViewHolder> f;
     private String studentYear;
+    private RecyclerView noticeView;
+
     public Notice_Fragment() {
         // Required empty public constructor
     }
 
     @Override
     public void onStart() {
-        f.startListening();
         super.onStart();
     }
 
@@ -56,6 +59,10 @@ public class Notice_Fragment extends Fragment {
         nav.setCheckedItem(R.id.nav_profile);
 
         mAuth = FirebaseAuth.getInstance();
+
+        noticeView = v.findViewById(R.id.notice_container);
+        noticeView.hasFixedSize();
+        noticeView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
 
         studentRef = FirebaseDatabase.getInstance().getReference().child("users").child("student").child(mAuth.getCurrentUser().getUid());
         noticeRef = FirebaseDatabase.getInstance().getReference().child("notice");
@@ -73,7 +80,7 @@ public class Notice_Fragment extends Fragment {
                         @Override
                         protected void onBindViewHolder(@NonNull final NotificationViewHolder holder, int position, @NonNull NotificationData model) {
                             String id = model.getId();
-                            DatabaseReference db = noticeRef.child(studentYear).child(id);
+                            DatabaseReference db = notificationRef.child(id);
                             db.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
@@ -85,7 +92,7 @@ public class Notice_Fragment extends Fragment {
                                     holder.lin.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(uri)));
+                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+uri)));
                                         }
                                     });
                                 }
@@ -105,7 +112,8 @@ public class Notice_Fragment extends Fragment {
                         }
                     };
                 }
-
+                f.startListening();
+                noticeView.setAdapter(f);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
