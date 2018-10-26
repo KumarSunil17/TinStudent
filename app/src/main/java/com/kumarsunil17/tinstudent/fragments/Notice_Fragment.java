@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class Notice_Fragment extends Fragment {
         nav.setCheckedItem(R.id.nav_profile);
 
         mAuth = FirebaseAuth.getInstance();
+
         studentRef = FirebaseDatabase.getInstance().getReference().child("users").child("student").child(mAuth.getCurrentUser().getUid());
         noticeRef = FirebaseDatabase.getInstance().getReference().child("notice");
         notificationRef = FirebaseDatabase.getInstance().getReference().child("notification");
@@ -69,24 +71,7 @@ public class Notice_Fragment extends Fragment {
                 Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-        switch (studentYear){
-            case "1":
-                getNotification("first");
-                break;
-            case "2":
-                getNotification("second");
-                break;
-            case "3":
-                getNotification("third");
-                break;
-            case "4":
-                getNotification("fourth");
-                break;
-            case "5":
-                getNotification("fifth");
-                break;
-        }
+        Toast.makeText(a, "Student year"+studentYear, Toast.LENGTH_SHORT).show();
         return v;
     }
     private void getNotification(final String studentYear){

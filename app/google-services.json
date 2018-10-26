@@ -1,0 +1,151 @@
+{
+  "project_info": {
+    "project_number": "267925905653",
+    "firebase_url": "https://tin-project-93b21.firebaseio.com",
+    "project_id": "tin-project-93b21",
+    "storage_bucket": "tin-project-93b21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267925905653:android:32ca0e46e0c8842b",
+        "android_client_info": {
+          "package_name": "com.abhijeet14.tinadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267925905653-0qcqm2u4sajht9gsppnc3fcojh3s84pd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.abhijeet14.tinadmin",
+            "certificate_hash": "9dab4f7cab656306f499c8f264aa8041654663a9"
+          }
+        },
+        {
+          "client_id": "267925905653-4nnqggu7fjfmol6fplnue18oedqbg3mv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1eeCkWQPY8CSQRf8dA0-De6isEEcPceU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267925905653-4nnqggu7fjfmol6fplnue18oedqbg3mv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267925905653:android:4ce40052a5e943de",
+        "android_client_info": {
+          "package_name": "com.abhijeet14.tinteachers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267925905653-pr6i3p8b64hihni68p09b877dag6ir46.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.abhijeet14.tinteachers",
+            "certificate_hash": "9dab4f7cab656306f499c8f264aa8041654663a9"
+          }
+        },
+        {
+          "client_id": "267925905653-4nnqggu7fjfmol6fplnue18oedqbg3mv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1eeCkWQPY8CSQRf8dA0-De6isEEcPceU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267925905653-4nnqggu7fjfmol6fplnue18oedqbg3mv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267925905653:android:5991aa6bf09b14a4",
+        "android_client_info": {
+          "package_name": "com.kumarsunil17.tinstudent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267925905653-qt4gdqtv9hqrrnv3jkt9rr7pql18l7ah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kumarsunil17.tinstudent",
+            "certificate_hash": "9dab4f7cab656306f499c8f264aa8041654663a9"
+          }
+        },
+        {
+          "client_id": "267925905653-fibrbv3ninm9f7a7ann01n64clm4cmos.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kumarsunil17.tinstudent",
+            "certificate_hash": "4339bea2e5329bdb5dd6f80981b9602116e8e593"
+          }
+        },
+        {
+          "client_id": "267925905653-4nnqggu7fjfmol6fplnue18oedqbg3mv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1eeCkWQPY8CSQRf8dA0-De6isEEcPceU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267925905653-4nnqggu7fjfmol6fplnue18oedqbg3mv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

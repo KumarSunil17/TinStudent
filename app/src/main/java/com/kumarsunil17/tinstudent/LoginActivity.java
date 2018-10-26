@@ -33,7 +33,16 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void login(final View view) {
+    @Override
+    protected void onStart() {
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
+        super.onStart();
+    }
+
+    public void doLogin(final View view) {
         String user = usernameText.getText().toString().trim();
         String pass = passwordText.getText().toString().trim();
         if(TextUtils.isEmpty(user) || TextUtils.isEmpty(pass)){
@@ -72,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void forgotPassword(View view) {
+    public void doResetPassword(View view) {
         startActivity(new Intent(LoginActivity.this, ForgetActivity.class));
     }
 }
