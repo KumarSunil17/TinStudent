@@ -25,9 +25,6 @@ import com.kumarsunil17.tinstudent.R;
 public class Home_Fragment extends Fragment {
     private View v;
     private AppCompatActivity a;
-    private DatabaseReference studentRef;
-    private FirebaseAuth mAuth;
-    String studentYear;
 
     public Home_Fragment() {
         // Required empty public constructor
@@ -43,22 +40,7 @@ public class Home_Fragment extends Fragment {
         NavigationView nav = a.findViewById(R.id.nav_view);
         nav.setCheckedItem(R.id.nav_home);
 
-        mAuth = FirebaseAuth.getInstance();
-        //Toast.makeText(a, mAuth.getCurrentUser().getUid()+" uid", Toast.LENGTH_SHORT).show();
-        String uid = mAuth.getCurrentUser().getUid();
-        studentRef = FirebaseDatabase.getInstance().getReference().child("users").child("student");
-        studentRef.child(uid).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                studentYear = dataSnapshot.child("year").getValue(String.class);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
-        Toast.makeText(a, "Studet year : "+studentYear, Toast.LENGTH_SHORT).show();
         return v;
     }
 }
