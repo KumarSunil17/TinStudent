@@ -74,46 +74,17 @@ public class Notice_Fragment extends Fragment {
                 studentYear = dataSnapshot.child("year").getValue(String.class);
 
                 if (studentYear.equals("5")){
-                    FirebaseRecyclerOptions<NotificationData> options = new FirebaseRecyclerOptions.Builder<NotificationData>().setQuery(noticeRef.child("fifth"),NotificationData.class).build();
-                    f = new FirebaseRecyclerAdapter<NotificationData, NotificationViewHolder>(options) {
-
-                        @Override
-                        protected void onBindViewHolder(@NonNull final NotificationViewHolder holder, int position, @NonNull NotificationData model) {
-                            String id = model.getId();
-                            DatabaseReference db = notificationRef.child(id);
-                            db.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
-                                    holder.setBodyText(dataSnapshot.child("body").getValue().toString());
-                                    holder.setTimeText(dataSnapshot.child("time").getValue().toString());
-                                    holder.setTitleText(dataSnapshot.child("title").getValue().toString());
-                                    holder.setPostedbyText(dataSnapshot.child("by").getValue().toString());
-                                    final String uri = dataSnapshot.child("url").getValue().toString();
-                                    holder.lin.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+uri)));
-                                        }
-                                    });
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                    Toast.makeText(a, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-
-                        @NonNull
-                        @Override
-                        public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                            View view = LayoutInflater.from(getContext()).inflate(R.layout.notification_row,viewGroup,false);
-                            return new NotificationViewHolder(view);
-                        }
-                    };
+                    getNotification("fifth");
+                }else if(studentYear.equals("4")){
+                    getNotification("fourth");
+                }else if(studentYear.equals("4")){
+                    getNotification("third");
+                }else if(studentYear.equals("4")){
+                    getNotification("second");
+                }else if(studentYear.equals("4")){
+                    getNotification("first");
                 }
-                f.startListening();
-                noticeView.setAdapter(f);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -123,13 +94,14 @@ public class Notice_Fragment extends Fragment {
         return v;
     }
     private void getNotification(final String studentYear){
+
         FirebaseRecyclerOptions<NotificationData> options = new FirebaseRecyclerOptions.Builder<NotificationData>().setQuery(noticeRef.child(studentYear),NotificationData.class).build();
         f = new FirebaseRecyclerAdapter<NotificationData, NotificationViewHolder>(options) {
 
             @Override
             protected void onBindViewHolder(@NonNull final NotificationViewHolder holder, int position, @NonNull NotificationData model) {
                 String id = model.getId();
-                DatabaseReference db = noticeRef.child(studentYear).child(id);
+                DatabaseReference db = notificationRef.child(id);
                 db.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
@@ -141,7 +113,7 @@ public class Notice_Fragment extends Fragment {
                         holder.lin.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(uri)));
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+uri)));
                             }
                         });
                     }
@@ -160,5 +132,7 @@ public class Notice_Fragment extends Fragment {
                 return new NotificationViewHolder(view);
             }
         };
+        f.startListening();
+        noticeView.setAdapter(f);
     }
 }
