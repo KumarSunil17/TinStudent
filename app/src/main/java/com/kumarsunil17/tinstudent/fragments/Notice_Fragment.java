@@ -65,13 +65,53 @@ public class Notice_Fragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 studentYear = dataSnapshot.child("year").getValue(String.class);
+
+                if (studentYear.equals("5")){
+                    FirebaseRecyclerOptions<NotificationData> options = new FirebaseRecyclerOptions.Builder<NotificationData>().setQuery(noticeRef.child("fifth"),NotificationData.class).build();
+                    f = new FirebaseRecyclerAdapter<NotificationData, NotificationViewHolder>(options) {
+
+                        @Override
+                        protected void onBindViewHolder(@NonNull final NotificationViewHolder holder, int position, @NonNull NotificationData model) {
+                            String id = model.getId();
+                            DatabaseReference db = noticeRef.child(studentYear).child(id);
+                            db.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+                                    holder.setBodyText(dataSnapshot.child("body").getValue().toString());
+                                    holder.setTimeText(dataSnapshot.child("time").getValue().toString());
+                                    holder.setTitleText(dataSnapshot.child("title").getValue().toString());
+                                    holder.setPostedbyText(dataSnapshot.child("by").getValue().toString());
+                                    final String uri = dataSnapshot.child("url").getValue().toString();
+                                    holder.lin.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(uri)));
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    Toast.makeText(a, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
+                        @NonNull
+                        @Override
+                        public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                            View view = LayoutInflater.from(getContext()).inflate(R.layout.notification_row,viewGroup,false);
+                            return new NotificationViewHolder(view);
+                        }
+                    };
+                }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        Toast.makeText(a, "Student year"+studentYear, Toast.LENGTH_SHORT).show();
         return v;
     }
     private void getNotification(final String studentYear){
