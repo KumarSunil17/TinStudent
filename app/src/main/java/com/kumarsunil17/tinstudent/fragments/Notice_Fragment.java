@@ -77,11 +77,11 @@ public class Notice_Fragment extends Fragment {
                     getNotification("fifth");
                 }else if(studentYear.equals("4")){
                     getNotification("fourth");
-                }else if(studentYear.equals("4")){
+                }else if(studentYear.equals("3")){
                     getNotification("third");
-                }else if(studentYear.equals("4")){
+                }else if(studentYear.equals("2")){
                     getNotification("second");
-                }else if(studentYear.equals("4")){
+                }else if(studentYear.equals("1")){
                     getNotification("first");
                 }
 
