@@ -1,2 +1,2 @@
 # TinStudent
-Official Integrated MCA, Utkal UNiversity android application
+Official Integrated MCA, Utkal University android application
