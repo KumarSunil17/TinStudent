@@ -17,6 +17,7 @@ public class Profile_Fragment extends Fragment {
     private View v;
     private AppCompatActivity a;
 
+
     public Profile_Fragment() {
         // Required empty public constructor
     }
