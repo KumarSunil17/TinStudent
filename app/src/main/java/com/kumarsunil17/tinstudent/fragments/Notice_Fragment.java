@@ -9,12 +9,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,6 +67,7 @@ public class Notice_Fragment extends Fragment {
         notificationRef = FirebaseDatabase.getInstance().getReference().child("notification");
 
         studentRef.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 studentYear = dataSnapshot.child("year").getValue(String.class);
@@ -84,8 +83,8 @@ public class Notice_Fragment extends Fragment {
                 }else if(studentYear.equals("1")){
                     getNotification("first");
                 }
-
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();

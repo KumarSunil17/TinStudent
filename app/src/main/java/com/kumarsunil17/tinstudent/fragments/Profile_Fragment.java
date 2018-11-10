@@ -30,6 +30,8 @@ public class Profile_Fragment extends Fragment {
         a.getSupportActionBar().setTitle("Profile");
         NavigationView nav = a.findViewById(R.id.nav_view);
         nav.setCheckedItem(R.id.nav_profile);
+
+
         return v;
     }
 }
