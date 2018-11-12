@@ -84,7 +84,6 @@ public class Profile_Fragment extends Fragment {
             }
         });
 
-
         return v;
     }
 }
