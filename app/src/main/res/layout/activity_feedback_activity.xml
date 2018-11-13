@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Feedback_activity">
+    <Spinner
+        android:layout_width="wrap_content"
+        android:entries="@array/feedback_subject"
+        android:layout_gravity="center"
+        android:id="@+id/feedback_subject"
+        android:layout_height="30sp">
+    </Spinner>
+    <EditText
+        android:layout_marginTop="20sp"
+        android:layout_width="300sp"
+        android:layout_height="200sp"
+        android:background="#dedede"
+        android:textColor="#000"
+        android:layout_gravity="center"
+        android:inputType="textMultiLine"
+        android:id="@+id/feedback_details"
+        />
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/feedback_rating"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_margin="20sp"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/btn_submit"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+</LinearLayout>
