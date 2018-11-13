@@ -44,7 +44,6 @@ public class Home_Fragment extends Fragment {
         NavigationView nav = a.findViewById(R.id.nav_view);
         nav.setCheckedItem(R.id.nav_home);
 
-
         return v;
     }
 }
