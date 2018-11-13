@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_faq_row"
+    app:cardElevation="6sp"
+    app:cardCornerRadius="10sp"
+    android:visibility="gone"
+    android:layout_marginBottom="15sp"
+    app:contentPadding="5sp"
+    app:cardBackgroundColor="#d9ffe4"
+    android:layout_height="110sp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Question"
+                android:gravity="center_vertical"
+                android:padding="5sp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:id="@+id/faq_row_question"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="2">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5sp"
+                android:text="Answer"
+                android:gravity="center_vertical"
+                android:id="@+id/faq_row_answer"/>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.card.MaterialCardView>

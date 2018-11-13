@@ -1,8 +1,10 @@
 package com.kumarsunil17.tinstudent.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -79,8 +81,21 @@ public class Profile_Fragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar
+                        .make(v, databaseError.getMessage(), Snackbar.LENGTH_SHORT)
+                        .setAction("OK", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
 
+                            }
+                        });
+                snackbar.setActionTextColor(Color.argb(255,216,27,96));
+                View sbView = snackbar.getView();
+                sbView.setBackgroundColor(Color.argb(255,0,133,119));
+                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                textView.setTextColor(Color.WHITE);
+
+                snackbar.show();
             }
         });
 

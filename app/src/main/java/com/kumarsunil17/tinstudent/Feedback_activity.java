@@ -1,7 +1,9 @@
 package com.kumarsunil17.tinstudent;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +29,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.graphics.Color.RED;
+import static java.lang.Float.NaN;
 
 public class Feedback_activity extends AppCompatActivity {
 
@@ -123,12 +129,25 @@ public class Feedback_activity extends AppCompatActivity {
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 if (TextUtils.isEmpty(detailsText)){
-                    Toast.makeText(Feedback_activity.this, detailsText, Toast.LENGTH_SHORT).show();
                     details.setError("Field cannot be empty!");
-                }else if(TextUtils.isEmpty(ratingText)){
-                    Toast.makeText(Feedback_activity.this, "Please give us star", Toast.LENGTH_SHORT).show();
+                }else if(TextUtils.isEmpty(ratingText) || ratingBar.getRating()==0.0f){
+                    Snackbar snackbar = Snackbar
+                            .make(v, "Please give us a star!", Snackbar.LENGTH_SHORT)
+                            .setAction("OK", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                }
+                            });
+                    snackbar.setActionTextColor(Color.argb(255,216,27,96));
+                    View sbView = snackbar.getView();
+                    sbView.setBackgroundColor(Color.argb(255,0,133,119));
+                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
+                    snackbar.show();
+
                 }else{
                     pg.show();
                     Date d = new Date();
@@ -139,16 +158,45 @@ public class Feedback_activity extends AppCompatActivity {
                     m.put("date",time);
                     m.put("subject",subjectText);
                     m.put("rate",ratingText);
-
-                    feedbackRef.child(mAuth.getCurrentUser().getUid()).updateChildren(m).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    m.put("uid",mAuth.getCurrentUser().getUid());
+                    final String key = feedbackRef.push().getKey();
+                    feedbackRef.child(key).updateChildren(m).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
                                 pg.dismiss();
-                                Toast.makeText(Feedback_activity.this, "Feedback submitted", Toast.LENGTH_SHORT).show();
+                                details.setText("");
+                                ratingBar.setRating(0.0f);
+                                Snackbar snackbar = Snackbar
+                                        .make(v, "Feedback submitted!", Snackbar.LENGTH_SHORT)
+                                        .setAction("OK", new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+
+                                            }
+                                        });
+                                snackbar.setActionTextColor(Color.argb(255,216,27,96));
+                                View sbView = snackbar.getView();
+                                sbView.setBackgroundColor(Color.argb(255,0,133,119));
+                                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                                textView.setTextColor(Color.WHITE);
+
+                                snackbar.show();
                             }else{
-                                Toast.makeText(Feedback_activity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
+                                Snackbar snackbar = Snackbar
+                                        .make(v, task.getException().getMessage(), Snackbar.LENGTH_SHORT)
+                                        .setAction("OK", new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+
+                                            }
+                                        });
+                                snackbar.setActionTextColor(Color.WHITE);
+                                View sbView = snackbar.getView();
+                                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                                textView.setTextColor(Color.BLUE);
+
+                                snackbar.show();                            }
                         }
                     });
                 }

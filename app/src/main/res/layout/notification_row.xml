@@ -10,11 +10,9 @@
     app:cardCornerRadius="5sp"
     app:cardUseCompatPadding="true"
     app:contentPadding="3sp">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <TextView
             android:id="@+id/notification_title"
             android:layout_width="wrap_content"
@@ -24,7 +22,6 @@
             android:text="Title"
             android:textColor="#000"
             android:textSize="20sp" />
-
         <TextView
             android:id="@+id/notification_body"
             android:layout_width="match_parent"
@@ -38,7 +35,6 @@
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
             android:text="Body" />
-
         <TextView
             android:id="@+id/notification_time"
             android:layout_width="161dp"
@@ -47,7 +43,6 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="0dp"
             android:text="Time" />
-
         <TextView
             android:id="@+id/notification_by"
             android:layout_width="83dp"

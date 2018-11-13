@@ -2,6 +2,7 @@ package com.kumarsunil17.tinstudent;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -66,15 +68,41 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         } else {
                             mAuth.signOut();
-                            Snackbar.make(view, "You aren't a student, get lost and login in your respective app", Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null).show();
+                            Snackbar snackbar = Snackbar
+                                    .make(view, "You aren't a student, get lost and login in your respective app", Snackbar.LENGTH_SHORT)
+                                    .setAction("OK", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                        }
+                                    });
+                            snackbar.setActionTextColor(Color.argb(255,216,27,96));
+                            View sbView = snackbar.getView();
+                            sbView.setBackgroundColor(Color.argb(255,0,133,119));
+                            TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                            textView.setTextColor(Color.WHITE);
+                            snackbar.show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         p.dismiss();
-                        Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG).show();
+                        Snackbar snackbar = Snackbar
+                                .make(view, e.getMessage(), Snackbar.LENGTH_SHORT)
+                                .setAction("OK", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                    }
+                                });
+                        snackbar.setActionTextColor(Color.argb(255,216,27,96));
+                        View sbView = snackbar.getView();
+                        sbView.setBackgroundColor(Color.argb(255,0,133,119));
+                        TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                        textView.setTextColor(Color.WHITE);
+
+                        snackbar.show();
                     }
                 });
             }
