@@ -57,7 +57,7 @@ public class Notice_Fragment extends Fragment {
         a = (AppCompatActivity) getActivity();
         a.getSupportActionBar().setTitle("Notice");
         NavigationView nav = a.findViewById(R.id.nav_view);
-        nav.setCheckedItem(R.id.nav_profile);
+        nav.setCheckedItem(R.id.nav_notice);
 
         mAuth = FirebaseAuth.getInstance();
 
