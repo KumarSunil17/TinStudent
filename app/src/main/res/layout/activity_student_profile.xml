@@ -6,5 +6,158 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StudentProfileActivity">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/student_profile_dp"
+        android:layout_width="0dp"
+        android:layout_height="150sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.075" />
 
+    <TextView
+        android:id="@+id/student_profile_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Student Name"
+        android:textColor="#000"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.404" />
+
+    <android.support.design.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="10dp"
+        android:onClick="doCallStudent"
+        app:cardBackgroundColor="#d9ffe4"
+        app:cardCornerRadius="5sp"
+        app:cardElevation="3sp"
+        app:contentPadding="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:src="@drawable/call_vector" />
+
+            <TextView
+                android:layout_width="270sp"
+                android:id="@+id/student_phone"
+                android:text="Number"
+                android:gravity="center_vertical"
+                android:textSize="18sp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp" />
+
+            <ImageView
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:onClick="doMessageStudent"
+                android:src="@drawable/message_vector" />
+        </LinearLayout>
+    </android.support.design.card.MaterialCardView>
+
+    <android.support.design.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10sp"
+        android:onClick="doEmailStudent"
+        app:cardBackgroundColor="#d9ffe4"
+        app:cardCornerRadius="5sp"
+        app:cardElevation="3sp"
+        app:contentPadding="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:src="@drawable/mail_vector" />
+
+            <TextView
+                android:id="@+id/student_email"
+                android:layout_width="254dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:gravity="center_vertical"
+                android:text="Email"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+    </android.support.design.card.MaterialCardView>
+
+    <android.support.design.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="#d9ffe4"
+        app:cardCornerRadius="5sp"
+        app:cardElevation="3sp"
+        app:contentPadding="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.79">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_gravity="center"
+                android:src="@drawable/home_vector" />
+
+            <TextView
+                android:id="@+id/student_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:text="Address"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </android.support.design.card.MaterialCardView>
 </android.support.constraint.ConstraintLayout>
