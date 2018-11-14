@@ -151,13 +151,14 @@ public class Feedback_activity extends AppCompatActivity {
                 }else{
                     pg.show();
                     Date d = new Date();
-                    SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss");
+                    SimpleDateFormat s = new SimpleDateFormat("dd/MM/yy hh:mm:ss");
                     String time = s.format(d);
                     Map<String,Object> m = new HashMap<>();
                     m.put("details",detailsText);
                     m.put("date",time);
                     m.put("subject",subjectText);
                     m.put("rate",ratingText);
+                    m.put("type","student");
                     m.put("uid",mAuth.getCurrentUser().getUid());
                     final String key = feedbackRef.push().getKey();
                     feedbackRef.child(key).updateChildren(m).addOnCompleteListener(new OnCompleteListener<Void>() {

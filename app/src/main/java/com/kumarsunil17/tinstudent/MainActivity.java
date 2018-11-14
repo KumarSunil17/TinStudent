@@ -22,7 +22,10 @@ import com.kumarsunil17.tinstudent.fragments.Help_Fragment;
 import com.kumarsunil17.tinstudent.fragments.Home_Fragment;
 import com.kumarsunil17.tinstudent.fragments.Notice_Fragment;
 import com.kumarsunil17.tinstudent.fragments.Profile_Fragment;
+import com.kumarsunil17.tinstudent.fragments.Student_Fragment;
 import com.kumarsunil17.tinstudent.fragments.Syllabus_Fragment;
+import com.kumarsunil17.tinstudent.fragments.Teacher_Fragment;
+import com.kumarsunil17.tinstudent.fragments.Timetable_Fragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -149,6 +152,27 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_syllabus) {
             f = new Syllabus_Fragment();
+            tag = "others";
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.container,f,tag);
+            ft.commit();
+
+        }else if (id == R.id.nav_timetable) {
+            f = new Timetable_Fragment();
+            tag = "others";
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.container,f,tag);
+            ft.commit();
+
+        }else if (id == R.id.nav_teacher) {
+            f = new Teacher_Fragment();
+            tag = "others";
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.container,f,tag);
+            ft.commit();
+
+        }else if (id == R.id.nav_student) {
+            f = new Student_Fragment();
             tag = "others";
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container,f,tag);

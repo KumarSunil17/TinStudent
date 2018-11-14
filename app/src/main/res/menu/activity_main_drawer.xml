@@ -20,6 +20,15 @@
             android:id="@+id/nav_syllabus"
             android:title="Syllabus" />
         <item
+            android:id="@+id/nav_timetable"
+            android:title="Timetable"/>
+        <item
+            android:id="@+id/nav_teacher"
+            android:title="Teachers"/>
+        <item
+            android:id="@+id/nav_student"
+            android:title="Students"/>
+        <item
             android:id="@+id/nav_help"
             android:title="Help"/>
         <item
