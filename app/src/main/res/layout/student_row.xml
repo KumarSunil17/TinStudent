@@ -2,7 +2,7 @@
 <android.support.design.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_teacher_row"
+    android:id="@+id/main_student_row"
     android:layout_width="match_parent"
     app:cardElevation="6sp"
     app:cardCornerRadius="10sp"
@@ -22,7 +22,7 @@
             android:layout_height="match_parent">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="match_parent"
-                android:id="@+id/teacher_row_dp"
+                android:id="@+id/student_row_dp"
                 android:layout_height="match_parent" />
 
         </LinearLayout>
@@ -31,17 +31,24 @@
             android:layout_weight="4"
             android:layout_marginLeft="20sp"
             android:orientation="vertical"
+            android:weightSum="5"
             android:layout_height="match_parent">
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:id="@+id/teacher_row_name"
-               android:gravity="center_vertical"
-               android:textSize="30sp"/>
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0sp"
+                android:layout_weight="3"
+                android:id="@+id/student_row_name"
+                android:text="Student Name"
+                android:gravity="center_vertical"
+                android:textSize="22sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0sp"
+                android:layout_marginTop="5sp"
+                android:layout_weight="2"
+                android:text="Roll"
+                android:textSize="18sp"
+                android:id="@+id/student_row_roll" />
         </LinearLayout>
-
     </LinearLayout>
-
-
 </android.support.design.card.MaterialCardView>

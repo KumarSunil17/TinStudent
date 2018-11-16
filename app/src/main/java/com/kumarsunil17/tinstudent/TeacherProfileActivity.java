@@ -77,6 +77,7 @@ public class TeacherProfileActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                pg.dismiss();
                 Snackbar snackbar = Snackbar
                         .make(Objects.requireNonNull(getCurrentFocus()), databaseError.getMessage(), Snackbar.LENGTH_SHORT)
                         .setAction("OK", new View.OnClickListener() {
@@ -88,8 +89,8 @@ public class TeacherProfileActivity extends AppCompatActivity {
 
                 snackbar.setActionTextColor(Color.WHITE);
                 View sbView = snackbar.getView();
-                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-                textView.setTextColor(Color.BLUE);
+                TextView textView =  sbView.findViewById(android.support.design.R.id.snackbar_text);
+                textView.setTextColor(Color.YELLOW);
 
                 snackbar.show();
             }
@@ -111,13 +112,11 @@ public class TeacherProfileActivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(TeacherProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
     }
 
     public void doMessageTeacher(View view) {
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setDataAndType(Uri.parse("smsto:"),"vnd.android-dir/mms-sms");
-            intent.putExtra("addresss",new String[]{phoneText.getText().toString()});
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("smsto:"+phoneText.getText().toString()));
             try{
                 startActivity(intent);
             }catch (Exception e){

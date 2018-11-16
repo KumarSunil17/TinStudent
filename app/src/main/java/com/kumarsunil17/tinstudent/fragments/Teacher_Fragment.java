@@ -68,6 +68,7 @@ public class Teacher_Fragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull final Teacher_Viewholder holder, final int position, @NonNull TeacherData model) {
                 teacherRef.child(getRef(position).getKey()).addValueEventListener(new ValueEventListener() {
+
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         holder.setName(dataSnapshot.child("name").getValue().toString());
@@ -81,6 +82,7 @@ public class Teacher_Fragment extends Fragment {
                                 startActivity(i);
                             }
                         });
+
                     }
 
                     @Override

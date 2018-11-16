@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AllStudentActivity">
+    <android.support.design.card.MaterialCardView
+        android:layout_width="match_parent"
+        app:cardElevation="8sp"
+        android:layout_marginBottom="15sp"
+        app:contentPadding="5sp"
+        app:cardBackgroundColor="#d9ffe4"
+        android:layout_height="50sp">
+        <EditText
+            android:layout_width="300sp"
+            android:layout_marginLeft="20sp"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:id="@+id/teacher_search"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="41dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:id="@+id/teacher_search_btn"
+            android:layout_marginRight="10sp"
+            android:src="@drawable/search_vector" />
+    </android.support.design.card.MaterialCardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/container_all_students"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
