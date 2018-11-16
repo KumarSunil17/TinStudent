@@ -146,7 +146,6 @@
             <ImageView
                 android:layout_width="40sp"
                 android:layout_height="40sp"
-                android:layout_gravity="center"
                 android:src="@drawable/home_vector" />
 
             <TextView

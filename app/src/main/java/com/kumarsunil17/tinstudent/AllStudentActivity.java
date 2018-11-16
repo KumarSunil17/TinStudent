@@ -67,7 +67,7 @@ public class AllStudentActivity extends AppCompatActivity {
                         holder.getCard().setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent i = new Intent(AllStudentActivity.this,TeacherProfileActivity.class);
+                                Intent i = new Intent(AllStudentActivity.this,StudentProfileActivity.class);
                                 i.putExtra("uid",getRef(position).getKey());
                                 startActivity(i);
                             }
