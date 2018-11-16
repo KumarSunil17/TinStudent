@@ -1,23 +1,17 @@
 package com.kumarsunil17.tinstudent;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.PermissionRequest;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,9 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.Objects;
 
@@ -70,8 +64,17 @@ public class TeacherProfileActivity extends AppCompatActivity {
                 addressText.setText(dataSnapshot.child("address").getValue().toString());
                 phoneText.setText(dataSnapshot.child("number").getValue().toString());
                 emailText.setText(dataSnapshot.child("email").getValue().toString());
-                String dpURL = dataSnapshot.child("image").getValue().toString();
-                Picasso.with(TeacherProfileActivity.this).load(dpURL).into(dpImage);
+                final String dpURL = dataSnapshot.child("image").getValue().toString();
+                Picasso.with(TeacherProfileActivity.this).load(dpURL).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.no_profile)
+                        .into(dpImage, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                            }
+                            @Override
+                            public void onError() {
+                                Picasso.with(TeacherProfileActivity.this).load(dpURL).placeholder(R.drawable.no_profile).into(dpImage);
+                            }
+                        });
                 pg.dismiss();
             }
 

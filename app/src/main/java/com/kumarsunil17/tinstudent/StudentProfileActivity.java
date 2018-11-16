@@ -19,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
@@ -61,8 +63,18 @@ public class StudentProfileActivity extends AppCompatActivity {
                 nameText.setText(dataSnapshot.child("name").getValue().toString());
                 addressText.setText(dataSnapshot.child("address").getValue().toString());
                 emailText.setText(dataSnapshot.child("email").getValue().toString());
-                String dpURL = dataSnapshot.child("image").getValue().toString();
-                Picasso.with(StudentProfileActivity.this).load(dpURL).into(dpImage);
+                final String dpURL = dataSnapshot.child("image").getValue().toString();
+                Picasso.with(StudentProfileActivity.this).load(dpURL).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.no_profile)
+                        .into(dpImage, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                            }
+                            @Override
+                            public void onError() {
+                                Picasso.with(StudentProfileActivity.this).load(dpURL).placeholder(R.drawable.no_profile).into(dpImage);
+                            }
+                        });
+
                 pg.dismiss();
             }
 

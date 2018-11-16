@@ -18,20 +18,18 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kumarsunil17.tinstudent.R;
+import com.kumarsunil17.tinstudent.StudentProfileActivity;
 import com.kumarsunil17.tinstudent.TeacherProfileActivity;
-import com.kumarsunil17.tinstudent.pojos.FAQ_Data;
-import com.kumarsunil17.tinstudent.pojos.NotificationData;
 import com.kumarsunil17.tinstudent.pojos.TeacherData;
-import com.kumarsunil17.tinstudent.view_holder.FAQ_ViewHolder;
-import com.kumarsunil17.tinstudent.view_holder.NotificationViewHolder;
-import com.kumarsunil17.tinstudent.view_holder.Teacher_Viewholder;
+import com.kumarsunil17.tinstudent.view_holder.TeacherViewholder;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -41,7 +39,7 @@ public class Teacher_Fragment extends Fragment {
     private View v;
     private AppCompatActivity a;
     private DatabaseReference teacherRef;
-    private FirebaseRecyclerAdapter<TeacherData,Teacher_Viewholder> f;
+    private FirebaseRecyclerAdapter<TeacherData,TeacherViewholder> f;
     private RecyclerView teacherView;
 
     public Teacher_Fragment() {
@@ -64,16 +62,25 @@ public class Teacher_Fragment extends Fragment {
 
         teacherRef = FirebaseDatabase.getInstance().getReference().child("users").child("teacher");
         FirebaseRecyclerOptions<TeacherData> options = new FirebaseRecyclerOptions.Builder<TeacherData>().setQuery(teacherRef,TeacherData.class).build();
-        f = new FirebaseRecyclerAdapter<TeacherData, Teacher_Viewholder>(options) {
+        f = new FirebaseRecyclerAdapter<TeacherData, TeacherViewholder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull final Teacher_Viewholder holder, final int position, @NonNull TeacherData model) {
+            protected void onBindViewHolder(@NonNull final TeacherViewholder holder, final int position, @NonNull TeacherData model) {
                 teacherRef.child(getRef(position).getKey()).addValueEventListener(new ValueEventListener() {
 
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         holder.setName(dataSnapshot.child("name").getValue().toString());
-                        String dpUrl = dataSnapshot.child("image").getValue().toString();
-                        Picasso.with(getContext()).load(dpUrl).into(holder.getDp());
+                        final String dpUrl = dataSnapshot.child("image").getValue().toString();
+                        Picasso.with(a).load(dpUrl).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.no_profile)
+                                .into(holder.getDp(), new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+                                    }
+                                    @Override
+                                    public void onError() {
+                                        Picasso.with(a).load(dpUrl).placeholder(R.drawable.no_profile).into(holder.getDp());
+                                    }
+                                });
                         holder.getCard().setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -82,6 +89,7 @@ public class Teacher_Fragment extends Fragment {
                                 startActivity(i);
                             }
                         });
+
 
                     }
 
@@ -107,9 +115,9 @@ public class Teacher_Fragment extends Fragment {
 
             @NonNull
             @Override
-            public Teacher_Viewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            public TeacherViewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(getContext()).inflate(R.layout.teacher_row,viewGroup,false);
-                return new Teacher_Viewholder(view);
+                return new TeacherViewholder(view);
             }
         };
         teacherView.setAdapter(f);

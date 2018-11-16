@@ -20,9 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kumarsunil17.tinstudent.pojos.StudentData;
-import com.kumarsunil17.tinstudent.pojos.TeacherData;
-import com.kumarsunil17.tinstudent.view_holder.Student_Viewholder;
-import com.kumarsunil17.tinstudent.view_holder.Teacher_Viewholder;
+import com.kumarsunil17.tinstudent.view_holder.StudentViewholder;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -32,7 +30,7 @@ public class AllStudentActivity extends AppCompatActivity {
     private RecyclerView allStudentView;
 
     private DatabaseReference studentRef;
-    private FirebaseRecyclerAdapter<StudentData,Student_Viewholder> f;
+    private FirebaseRecyclerAdapter<StudentData,StudentViewholder> f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +52,9 @@ public class AllStudentActivity extends AppCompatActivity {
 
         studentRef = FirebaseDatabase.getInstance().getReference().child("users").child("student");
         FirebaseRecyclerOptions<StudentData> options = new FirebaseRecyclerOptions.Builder<StudentData>().setQuery(studentRef.orderByChild("year").equalTo(year),StudentData.class).build();
-        f = new FirebaseRecyclerAdapter<StudentData, Student_Viewholder>(options) {
+        f = new FirebaseRecyclerAdapter<StudentData, StudentViewholder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull final Student_Viewholder holder, final int position, @NonNull final StudentData model) {
+            protected void onBindViewHolder(@NonNull final StudentViewholder holder, final int position, @NonNull final StudentData model) {
                 studentRef.child(getRef(position).getKey()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -73,18 +71,18 @@ public class AllStudentActivity extends AppCompatActivity {
                             }
                         });
                         final String dpURL = dataSnapshot.child("image").getValue().toString();
-                        Picasso.with(AllStudentActivity.this).load(dpURL).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.color.colorAccent)
+                        Picasso.with(AllStudentActivity.this).load(dpURL).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.no_profile)
                                 .into(holder.getDp(), new Callback() {
                                     @Override
                                     public void onSuccess() {
                                     }
                                     @Override
                                     public void onError() {
-                                        Picasso.with(AllStudentActivity.this).load(dpURL).placeholder(R.color.colorAccent).into(holder.getDp());
+                                        Picasso.with(AllStudentActivity.this).load(dpURL).placeholder(R.drawable.no_profile).into(holder.getDp());
                                     }
                                 });
 
-                        //pg.dismiss();
+                        pg.dismiss();
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -96,9 +94,9 @@ public class AllStudentActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public Student_Viewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            public StudentViewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(AllStudentActivity.this).inflate(R.layout.student_row,viewGroup,false);
-                return new Student_Viewholder(view);
+                return new StudentViewholder(view);
             }
         };
         allStudentView.setAdapter(f);

@@ -10,12 +10,12 @@ import com.kumarsunil17.tinstudent.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Teacher_Viewholder extends RecyclerView.ViewHolder {
+public class TeacherViewholder extends RecyclerView.ViewHolder {
     private CircleImageView dp;
     private TextView name;
     private MaterialCardView card;
 
-    public Teacher_Viewholder(@NonNull View itemView) {
+    public TeacherViewholder(@NonNull View itemView) {
         super(itemView);
 
         dp = itemView.findViewById(R.id.teacher_row_dp);

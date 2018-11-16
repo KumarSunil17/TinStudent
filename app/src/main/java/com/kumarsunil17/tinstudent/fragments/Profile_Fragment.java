@@ -23,7 +23,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.kumarsunil17.tinstudent.R;
+import com.kumarsunil17.tinstudent.StudentProfileActivity;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +37,7 @@ public class Profile_Fragment extends Fragment {
     private View v;
     private AppCompatActivity a;
     private TextView profileName, profileRoll, profilePhone, profileAddress, profileCurrentSemester, profileEmail;
-    private ImageView profileDP;
+    private CircleImageView profileDP;
 
     private FirebaseAuth mAuth;
     private DatabaseReference userRef;
@@ -75,8 +80,17 @@ public class Profile_Fragment extends Fragment {
                 profilePhone.setText(dataSnapshot.child("number").getValue().toString());
                 profileCurrentSemester.setText(dataSnapshot.child("year").getValue().toString());
 
-                String dpUrl = dataSnapshot.child("image").getValue().toString();
-                Picasso.with(getContext()).load(dpUrl).into(profileDP);
+                final String dpUrl = dataSnapshot.child("image").getValue().toString();
+                Picasso.with(a).load(dpUrl).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.no_profile)
+                        .into(profileDP, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                            }
+                            @Override
+                            public void onError() {
+                                Picasso.with(a).load(dpUrl).placeholder(R.drawable.no_profile).into(profileDP);
+                            }
+                        });
             }
 
             @Override
