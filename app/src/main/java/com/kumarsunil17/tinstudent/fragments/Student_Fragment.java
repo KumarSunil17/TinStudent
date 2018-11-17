@@ -73,42 +73,18 @@ public class Student_Fragment extends Fragment {
         thirdYr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar snackbar = Snackbar
-                        .make(v,"Work is pending", Snackbar.LENGTH_SHORT)
-                        .setAction("OK", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                            }
-                        });
-                snackbar.setActionTextColor(Color.argb(255,216,27,96));
-                View sbView = snackbar.getView();
-                sbView.setBackgroundColor(Color.argb(255,0,133,119));
-                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-                textView.setTextColor(Color.WHITE);
-
-                snackbar.show();
+                Intent i = new Intent(a,AllStudentActivity.class);
+                i.putExtra("year","3");
+                startActivity(i);
             }
         });
 
         fourthyr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar snackbar = Snackbar
-                        .make(v, "Work is pending", Snackbar.LENGTH_SHORT)
-                        .setAction("OK", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                            }
-                        });
-                snackbar.setActionTextColor(Color.argb(255,216,27,96));
-                View sbView = snackbar.getView();
-                sbView.setBackgroundColor(Color.argb(255,0,133,119));
-                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-                textView.setTextColor(Color.WHITE);
-
-                snackbar.show();
+                Intent i = new Intent(a,AllStudentActivity.class);
+                i.putExtra("year","4");
+                startActivity(i);
             }
         });
 

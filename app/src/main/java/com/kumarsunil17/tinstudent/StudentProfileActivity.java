@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.card.MaterialCardView;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class StudentProfileActivity extends AppCompatActivity {
     private DatabaseReference studentRef;
     private StorageReference dpRef;
     private String userID;
+    private MaterialCardView numberCard;
 
     private TextView nameText, addressText, emailText, phoneText;
     private CircleImageView dpImage;
@@ -45,6 +47,9 @@ public class StudentProfileActivity extends AppCompatActivity {
         emailText = findViewById(R.id.student_email);
         dpImage = findViewById(R.id.student_profile_dp);
         phoneText = findViewById(R.id.student_phone);
+        numberCard = findViewById(R.id.number_card);
+
+        numberCard.setEnabled(false);
 
         userID = getIntent().getExtras().getString("uid");
         studentRef = FirebaseDatabase.getInstance().getReference().child("users").child("student");

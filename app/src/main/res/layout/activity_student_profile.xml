@@ -41,6 +41,7 @@
 
     <android.support.design.card.MaterialCardView
         android:layout_width="match_parent"
+        android:id="@+id/number_card"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="24dp"
