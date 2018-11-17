@@ -51,6 +51,7 @@ public class AllStudentActivity extends AppCompatActivity {
         //pg.show();
 
         studentRef = FirebaseDatabase.getInstance().getReference().child("users").child("student");
+        studentRef.keepSynced(true);
         FirebaseRecyclerOptions<StudentData> options = new FirebaseRecyclerOptions.Builder<StudentData>().setQuery(studentRef.orderByChild("year").equalTo(year),StudentData.class).build();
         f = new FirebaseRecyclerAdapter<StudentData, StudentViewholder>(options) {
             @Override

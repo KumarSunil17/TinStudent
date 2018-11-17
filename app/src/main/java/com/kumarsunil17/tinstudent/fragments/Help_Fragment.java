@@ -72,6 +72,7 @@ public class Help_Fragment extends Fragment {
         });
 
         faqRef = FirebaseDatabase.getInstance().getReference().child("faq");
+        faqRef.keepSynced(true);
         FirebaseRecyclerOptions<FAQ_Data> options = new FirebaseRecyclerOptions.Builder<FAQ_Data>().setQuery(faqRef,FAQ_Data.class).build();
         f = new FirebaseRecyclerAdapter<FAQ_Data, FAQ_ViewHolder>(options) {
             @Override

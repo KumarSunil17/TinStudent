@@ -69,6 +69,9 @@ public class Notice_Fragment extends Fragment {
         noticeRef = FirebaseDatabase.getInstance().getReference().child("notice");
         notificationRef = FirebaseDatabase.getInstance().getReference().child("notification");
 
+        studentRef.keepSynced(true);
+        notificationRef.keepSynced(true);
+        noticeRef.keepSynced(true);
         studentRef.addValueEventListener(new ValueEventListener() {
 
             @Override

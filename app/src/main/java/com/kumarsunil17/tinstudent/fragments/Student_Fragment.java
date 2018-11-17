@@ -27,7 +27,6 @@ public class Student_Fragment extends Fragment {
     private View v;
     private AppCompatActivity a;
     private MaterialCardView firstYr, secondYr, thirdYr, fourthyr, fifthYr;
-    private DatabaseReference studentRef;
 
     public Student_Fragment() {
         // Required empty public constructor
@@ -44,7 +43,6 @@ public class Student_Fragment extends Fragment {
         NavigationView nav = a.findViewById(R.id.nav_view);
         nav.setCheckedItem(R.id.nav_student);
 
-        studentRef = FirebaseDatabase.getInstance().getReference().child("users").child("student");
         firstYr = v.findViewById(R.id.first_yr_row);
         secondYr = v.findViewById(R.id.second_yr_row);
         thirdYr = v.findViewById(R.id.third_yr_row);

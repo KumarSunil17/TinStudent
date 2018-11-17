@@ -61,6 +61,8 @@ public class Teacher_Fragment extends Fragment {
         teacherView.hasFixedSize();
 
         teacherRef = FirebaseDatabase.getInstance().getReference().child("users").child("teacher");
+        teacherRef.keepSynced(true);
+
         FirebaseRecyclerOptions<TeacherData> options = new FirebaseRecyclerOptions.Builder<TeacherData>().setQuery(teacherRef,TeacherData.class).build();
         f = new FirebaseRecyclerAdapter<TeacherData, TeacherViewholder>(options) {
             @Override
